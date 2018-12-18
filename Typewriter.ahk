@@ -1,0 +1,112 @@
+﻿#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
+#SingleInstance Force
+
+normalKeys := ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","ß","ä","ö","ü","1","2","3","4","5","6","7","8","9","0",,"^","´","+","+","#",",",".","-","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12","PgUp","PgDn","End","Numpad1","Numpad2","Numpad3","Numpad4","Numpad5","Numpad6","Numpad7","Numpad8","Numpad9","Numpad0","NumpadDiv","NumpadMult","NumpadAdd","NumpadSub","NumpadPgUp","NumpadPgDn"]
+
+for index, key in normalKeys {
+    Hotkey, ~*%key%, PlayRandomKeyPress
+    Hotkey, ~*%key% Up, PlayRandomKeyRelease
+}
+
+~*Shift::
+~*Ctrl::
+~*Alt::
+PlaySound("Sounds/Shift press.wav")
+return
+~*Shift Up::
+~*Ctrl Up::
+~*Alt Up::
+PlaySound("Sounds/Shift release.wav")
+return
+
+~*NumLock::
+if GetKeyState("NumLock", "T") = 1
+   PlaySound("Sounds/Lever press.wav")
+else
+   PlaySound("Sounds/Lever release.wav")
+return
+
+~*ScrollLock::
+if GetKeyState("ScrollLock", "T") = 1
+   PlaySound("Sounds/Lever press.wav")
+else
+   PlaySound("Sounds/Lever release.wav")
+return
+
+~*CapsLock::
+if GetKeyState("CapsLock", "T") = 1
+   PlaySound("Sounds/Lever press.wav")
+else
+   PlaySound("Sounds/Lever release.wav")
+return
+
+~*Space::
+~*Up::
+~*Down::
+~*Left::
+~*Right::
+~*NumpadUp::
+~*NumpadDown::
+~*NumpadLeft::
+~*NumpadRight::
+PlaySound("Sounds/Space bar press.wav")
+return
+~*Space Up::
+~*Up Up::
+~*Down Up::
+~*Left Up::
+~*Right Up::
+~*NumpadUp Up::
+~*NumpadDown Up::
+~*NumpadLeft Up::
+~*NumpadRight Up::
+PlaySound("Sounds/Space bar release.wav")
+return
+
+~*BS::
+~*Del::
+~*NumpadDel::
+PlaySound("Sounds/Backspace press.wav")
+return
+~*BS Up::
+~*Del Up::
+~*NumpadDel Up::
+PlaySound("Sounds/Backspace release.wav")
+return
+
+~*Enter::
+~*NumpadEnter::
+PlaySound("Sounds/New Line 2.wav")
+return
+
+~*Ins::
+~*NumpadIns::
+PlaySound("Sounds/Ding.wav")
+return
+
+return
+
+PlayRandomKeyPress:
+    Random, i, 1, 4
+    PlaySound("Sounds/Key " i " press.wav")
+return
+
+PlayRandomKeyRelease:
+    Random, i, 1, 4
+    PlaySound("Sounds/Key " i " release.wav")
+return
+
+PlaySound(filePath)  {
+    static players := CreatePlayersArray(), key := 0
+    players[++key].url := filePath, ( key = 5 && key := 0)
+    KeyWait, % SubStr(A_ThisHotkey, 3)
+}
+
+CreatePlayersArray()  {
+    players := []
+    Loop 5
+        players.Push( ComObjCreate("WMPlayer.OCX.7") )
+    Return players
+}
