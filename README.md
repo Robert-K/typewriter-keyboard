@@ -3,6 +3,8 @@ Makes your boring keyboard sound like a fancy typewriter!
 
 ### AutoHotkey is not required to run the executable!
 
+#### Created for and tested with german keyboard layout. May or may not work with different layouts.
+
 ## Features
 - Several sounds for most keys
 - Special sounds for Enter, Lock keys, Space, Backspace, etc.
