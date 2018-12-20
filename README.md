@@ -3,6 +3,12 @@ Makes your boring keyboard sound like a fancy typewriter!
 
 ### AutoHotkey is not required to run the executable!
 
+## Features
+- Several sounds for most keys
+- Special sounds for Enter, Lock keys, Space, Backspace, etc.
+- Volume adjustable via Volume Mixer
+- Clean and efficient (for AHK standards 😅)
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
